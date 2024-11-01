@@ -21,7 +21,7 @@ func bindUrlController(app *core.App, group *echo.Group) {
 
 	subGroup := group.Group("/u")
 
-	subGroup.GET("/:id", controller.redirect)
+	subGroup.GET("/:id", controller.getLongUrl)
 	subGroup.POST("", controller.shorten)
 }
 
@@ -42,7 +42,7 @@ func (cont *urlController) shorten(c echo.Context) error {
 	})
 }
 
-func (cont *urlController) redirect(c echo.Context) error {
+func (cont *urlController) getLongUrl(c echo.Context) error {
 	id := c.Param("id")
 
 	if id == "" {
